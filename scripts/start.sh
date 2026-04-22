@@ -10,7 +10,7 @@ mkdir -p "${SERVER_ROOT}" "${SERVER_ROOT}/logs"
 
 if [[ ! -f "${ARCLIGHT_JAR}" ]]; then
   echo "[ERROR] Missing Arclight server jar at: ${ARCLIGHT_JAR}"
-  echo "Place Arclight 1.20.1 jar in /server-root before starting."
+  echo "Place Arclight 1.20.1 jar in ${SERVER_ROOT} before starting."
   exit 1
 fi
 
