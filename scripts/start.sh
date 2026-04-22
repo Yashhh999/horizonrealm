@@ -3,6 +3,10 @@ set -euo pipefail
 
 SERVER_ROOT="/data/server-root"
 ARCLIGHT_JAR="${SERVER_ROOT}/arclight-1.20.1.jar"
+JVM_XMS="${JVM_XMS:-12G}"
+JVM_XMX="${JVM_XMX:-12G}"
+
+mkdir -p "${SERVER_ROOT}" "${SERVER_ROOT}/logs"
 
 if [[ ! -f "${ARCLIGHT_JAR}" ]]; then
   echo "[ERROR] Missing Arclight server jar at: ${ARCLIGHT_JAR}"
@@ -10,11 +14,9 @@ if [[ ! -f "${ARCLIGHT_JAR}" ]]; then
   exit 1
 fi
 
-mkdir -p "${SERVER_ROOT}" "${SERVER_ROOT}/logs"
-
 exec java \
-  -Xms12G \
-  -Xmx12G \
+  -Xms"${JVM_XMS}" \
+  -Xmx"${JVM_XMX}" \
   -XX:+UseG1GC \
   -XX:+ParallelRefProcEnabled \
   -XX:MaxGCPauseMillis=200 \

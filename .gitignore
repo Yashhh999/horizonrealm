@@ -27,6 +27,7 @@ Thumbs.db
 # Docker
 *.pid
 *.sock
+.env
 
 # Keep project structure/config in VCS
 !server-root/
