@@ -1,0 +1,64 @@
+services:
+  arclight:
+    image: eclipse-temurin:21-jre
+    container_name: horizonrealm-arclight
+    working_dir: /data
+    command: ["/bin/bash", "-c", "./scripts/start.sh"]
+    ports:
+      - "25565:25565"
+    volumes:
+      - ./server-root:/data/server-root
+      - ./plugins-configs:/data/plugins-configs
+      - ./mods:/data/mods
+      - ./resource-pack:/data/resource-pack
+      - ./scripts:/data/scripts
+    environment:
+      TZ: UTC
+      MARIADB_HOST: mariadb
+      MARIADB_PORT: 3306
+      MARIADB_DATABASE: horizonrealm
+      MARIADB_USER: horizonrealm
+      MARIADB_PASSWORD: horizonrealm_password
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JVM_XMS: 12G
+      JVM_XMX: 12G
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: unless-stopped
+
+  mariadb:
+    image: mariadb:11
+    container_name: horizonrealm-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: root_password_change_me
+      MARIADB_DATABASE: horizonrealm
+      MARIADB_USER: horizonrealm
+      MARIADB_PASSWORD: horizonrealm_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: horizonrealm-redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+volumes:
+  mariadb-data:
+  redis-data:
