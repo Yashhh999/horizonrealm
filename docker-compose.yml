@@ -38,8 +38,6 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE:-horizonrealm}
       MARIADB_USER: ${MARIADB_USER:-horizonrealm}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD:?set_in_environment_or_.env}
-    ports:
-      - "3306:3306"
     volumes:
       - mariadb-data:/var/lib/mysql
     healthcheck:
@@ -53,8 +51,6 @@ services:
     image: redis:7-alpine
     container_name: horizonrealm-redis
     command: ["redis-server", "--appendonly", "yes"]
-    ports:
-      - "6379:6379"
     volumes:
       - redis-data:/data
     restart: unless-stopped
