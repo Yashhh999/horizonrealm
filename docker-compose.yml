@@ -1,16 +1,16 @@
 services:
   arclight:
-    image: eclipse-temurin:21-jre
+    image: eclipse-temurin:17-jre
     container_name: horizonrealm-arclight
-    working_dir: /data
-    command: ["/bin/bash", "./scripts/start.sh"]
+    working_dir: /data/server-root
+    command: ["/bin/bash", "/data/scripts/start.sh"]
     ports:
       - "25565:25565"
     volumes:
       - ./server-root:/data/server-root
-      - ./plugins-configs:/data/plugins-configs
-      - ./mods:/data/mods
-      - ./resource-pack:/data/resource-pack
+      - ./plugins-configs/plugins:/data/server-root/plugins
+      - ./mods:/data/server-root/mods
+      - ./resource-pack:/data/server-root/resource-pack
       - ./scripts:/data/scripts
     environment:
       TZ: UTC

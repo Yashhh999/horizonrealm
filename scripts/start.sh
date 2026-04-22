@@ -18,6 +18,10 @@ if [[ ! -f "${ARCLIGHT_JAR}" ]]; then
   fi
 fi
 
+cd "${SERVER_ROOT}"
+
+echo "eula=true" > eula.txt
+
 exec java \
   -Xms"${JVM_XMS}" \
   -Xmx"${JVM_XMX}" \
