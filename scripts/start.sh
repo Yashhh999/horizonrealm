@@ -9,9 +9,13 @@ JVM_XMX="${JVM_XMX:-12G}"
 mkdir -p "${SERVER_ROOT}" "${SERVER_ROOT}/logs"
 
 if [[ ! -f "${ARCLIGHT_JAR}" ]]; then
-  echo "[ERROR] Missing Arclight server jar at: ${ARCLIGHT_JAR}"
-  echo "Place Arclight 1.20.1 jar in ${SERVER_ROOT} before starting."
-  exit 1
+  echo "[INFO] Missing Arclight server jar at: ${ARCLIGHT_JAR}"
+  echo "Downloading Arclight 1.20.1..."
+  wget -qO "${ARCLIGHT_JAR}" "https://github.com/IzzelAliz/Arclight/releases/download/Trials/1.0.6/arclight-forge-1.20.1-1.0.6.jar" || curl -sL -o "${ARCLIGHT_JAR}" "https://github.com/IzzelAliz/Arclight/releases/download/Trials/1.0.6/arclight-forge-1.20.1-1.0.6.jar"
+  if [[ ! -f "${ARCLIGHT_JAR}" ]]; then
+    echo "[ERROR] Failed to download Arclight 1.20.1 jar."
+    exit 1
+  fi
 fi
 
 exec java \

@@ -1,0 +1,27 @@
+display:
+  name: 'Knight'
+  lore:
+    - '&7A master of melee combat,'
+    - '&7wielding heavy weapons and'
+    - '&7wearing sturdy armor.'
+    - ''
+    - '&8+ &7High Health & Defense'
+    - '&8+ &7Melee Damage bonuses'
+    - '&8- &7Low Mana & Magic Damage'
+
+attributes:
+  max-health:
+    base: 25
+    per-level: 2
+  attack-damage:
+    base: 5
+    per-level: 1
+  armor:
+    base: 2
+    per-level: 0.5
+  weapon-weight-capacity:
+    base: 20
+    per-level: 1
+
+# Compatible with Epic Fight weapons
+subclasses: []
