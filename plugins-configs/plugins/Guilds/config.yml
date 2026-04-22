@@ -1,0 +1,19 @@
+# ----------------------------------------------------
+# Guilds Configuration - Horizon Realm
+# ----------------------------------------------------
+cost:
+  # The type of cost to create a Guild (Options: VAULT, ITEM, EXP, TOKENMANAGER)
+  creation-type: "VAULT"
+  # How much it costs to create a guild (in coins)
+  creation: 10000
+
+  # You can require TokenManager (Horizon Shards) for expanding/upgrading
+  tier-upgrade-type: "TOKENMANAGER"
+  tier-upgrades:
+    2: 50  # 50 Horizon Shards for Tier 2
+    3: 150 # 150 Horizon Shards for Tier 3
+    4: 300 # 300 Horizon Shards for Tier 4
+
+settings:
+  prefix: "&8[&aGuilds&8] &7"
+  chat-format: "&8[&a%guild%&8] &7%player% &8» &f%message%"
