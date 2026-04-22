@@ -3,7 +3,7 @@ services:
     image: eclipse-temurin:21-jre
     container_name: horizonrealm-arclight
     working_dir: /data
-    command: ["/bin/bash", "-c", "./scripts/start.sh"]
+    command: ["/bin/bash", "./scripts/start.sh"]
     ports:
       - "25565:25565"
     volumes:
