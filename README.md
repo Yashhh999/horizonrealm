@@ -60,12 +60,21 @@ This supports an MMORPG endgame while preserving deliberate, high-skill combat i
 ## Quick Start
 
 1. Place `arclight-1.20.1.jar` in `/server-root`.
-2. Ensure plugin and mod assets are mounted/configured.
-3. Start stack:
+2. Create a local `.env` file (not committed) with at least:
+   ```dotenv
+   MARIADB_ROOT_PASSWORD=replace_with_strong_root_password
+   MARIADB_PASSWORD=replace_with_strong_app_password
+   MARIADB_DATABASE=horizonrealm
+   MARIADB_USER=horizonrealm
+   JVM_XMS=12G
+   JVM_XMX=12G
+   ```
+3. Ensure plugin and mod assets are mounted/configured.
+4. Start stack:
    ```bash
    docker compose up -d
    ```
-4. Check service health/logs:
+5. Check service health/logs:
    ```bash
    docker compose ps
    docker compose logs -f arclight
