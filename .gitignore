@@ -35,3 +35,5 @@ Thumbs.db
 !mods/
 !resource-pack/
 !scripts/
+*.deb
+*.mrpack
